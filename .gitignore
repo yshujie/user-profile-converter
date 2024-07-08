@@ -1,0 +1,49 @@
+# Go related
+bin/
+pkg/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go vendor
+vendor/
+
+# IDE/editor related
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# MacOS related
+.DS_Store
+
+# Log files
+*.log
+
+# Environment variable files
+.env
+
+# Docker related
+docker-compose.override.yml
+Dockerfile*
+docker-compose.yml
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Output of the build process
+build/
+dist/
