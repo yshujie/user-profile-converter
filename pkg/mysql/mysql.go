@@ -3,6 +3,8 @@ import (
 	"database/sql"
 	"fmt"
 	"os"
+
+	_ "user-profile-converter/internal/repository/mysql"
 )
 
 /**
@@ -17,7 +19,7 @@ func Connect() (*sql.DB, error) {
 	dbname := os.Getenv("MYSQL_DB")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", user, passwd, host, port, dbname)
-	db, err := sql.Open("mysql", dsn)
+	db, err := sql.Open("mysql-logging", dsn)
 	if err != nil {
 		return nil, err
 	}
