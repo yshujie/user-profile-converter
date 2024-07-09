@@ -7,18 +7,16 @@ import (
 )
 
 type DataService struct {
-    userRepo    mysql.UserRepository
-    childRepo   mysql.ChildRepository
-    studentRepo mysql.StudentRepository
-    mongoRepo   mongodb.MongoRepository
+    userRepo    *mysql.UserRepository
+    childRepo   *mysql.ChildRepository
+    studentRepo *mysql.StudentRepository
 }
 
-func NewDataService(userRepo mysql.UserRepository, childRepo mysql.ChildRepository, studentRepo mysql.StudentRepository, mongoRepo mongodb.MongoRepository) *DataService {
+func NewDataService(userRepo *mysql.UserRepository, childRepo *mysql.ChildRepository, studentRepo *mysql.StudentRepository) *DataService {
     return &DataService{
         userRepo:    userRepo,
         childRepo:   childRepo,
         studentRepo: studentRepo,
-        mongoRepo:   mongoRepo,
     }
 }
 
@@ -34,11 +32,6 @@ func (s *DataService) MigrateData() error {
     }
 
     students, err := s.studentRepo.GetStudents()
-    if err != nil {
-        return err
-    }
-
-    err = s.mongoRepo.WriteData(users, children, students)
     if err != nil {
         return err
     }
