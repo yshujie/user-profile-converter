@@ -2,7 +2,7 @@ package mysql
 
 import (
     "database/sql"
-    "my-go-tool/internal/model"
+    "user-profile-converter/internal/model"
 )
 
 type UserRepository struct {

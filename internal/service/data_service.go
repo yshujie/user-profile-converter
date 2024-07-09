@@ -1,9 +1,9 @@
 package service
 
 import (
-    "my-go-tool/internal/model"
-    "my-go-tool/internal/repository/mysql"
-    "my-go-tool/internal/repository/mongodb"
+    "user-profile-converter/internal/model"
+    "user-profile-converter/internal/repository/mysql"
+    "user-profile-converter/internal/repository/mongodb"
 )
 
 type DataService struct {

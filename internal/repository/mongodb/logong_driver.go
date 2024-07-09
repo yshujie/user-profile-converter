@@ -4,7 +4,7 @@ import (
     "context"
     "time"
 
-    "my-go-tool/pkg/logging"
+    "user-profile-converter/pkg/logging"
     "go.mongodb.org/mongo-driver/mongo"
     "go.mongodb.org/mongo-driver/mongo/options"
 )
