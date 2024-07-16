@@ -26,11 +26,6 @@ vendor/
 # Environment variable files
 .env
 
-# Docker related
-docker-compose.override.yml
-Dockerfile*
-docker-compose.yml
-
 # Dependency directories
 node_modules/
 jspm_packages/
