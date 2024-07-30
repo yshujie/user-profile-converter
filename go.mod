@@ -1,4 +1,4 @@
-module user-profile-converter
+module github.com/yshujie/user-profile-converter
 
 go 1.18
 

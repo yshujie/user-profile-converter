@@ -3,34 +3,21 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:latest
-    container_name: mongodb
-    environment:
-      - http_proxy=${HTTP_PROXY}
-      - https_proxy=${HTTPS_PROXY}
+    container_name: user_profile_mongodb
     ports:
       - "${MONGODB_PORT}:${MONGODB_PORT}"
     volumes:
-      - /data/db/mongodb/user-profile-converter:/data/db
-    networks:
-      - ai-app-network
+      - /data/db/mongodb/user-profile:/data/db
 
   app:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - http_proxy=${HTTP_PROXY}
-        - https_proxy=${HTTPS_PROXY}
-    environment:
-      - http_proxy=${HTTP_PROXY}
-      - https_proxy=${HTTPS_PROXY}
     container_name: user-profile-converter
     depends_on:
       - mongodb
     ports:
       - "${APP_PORT}:${APP_PORT}"
-    networks:
-      - ai-app-network
     volumes:
       - ~/code/go/src/github.com/yshujie/user-profile-converter:/app  # 挂载宿主机的项目目录到容器内
     env_file:
@@ -42,8 +29,3 @@ services:
       - ~/code/go/src/github.com/yshujie/user-profile-converter:/app
     working_dir: /app
     command: sh -c "go mod tidy && go mod download"
-    networks:
-      - ai-app-network
-
-networks:
-  ai-app-network:
