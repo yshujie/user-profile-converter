@@ -34,8 +34,15 @@ user-profile-converter/
 │   └── mongodb/
 │       └── mongodb.go
 ├── Dockerfile
+├── Dockerfile.dev
+├── docker-compose.yml
+├── docker-compose.override.yml
+├── docker-compose.prod.yml
+├── .env
+├── .env.prod
+├── .air.toml
 ├── go.mod
-└── go.sum
+├── go.sum
 ```
 
 ## 快速开始
@@ -51,16 +58,16 @@ cd ~/code/go/src/github.com/yshujie
 git clone git@github.com:yshujie/user-profile-converter.git
 ```
 
-#### 构建 Docker 镜像
+### 构建&运行
+
+#### 开发环境运行 Docker 容器
 ```
-docker-compose build
+docker-compose up --build
 ```
 
-### 运行
-
-#### 运行 Docker 容器
+#### 生产环境运行 Docker 容器
 ```
-docker-compose up -d
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
 ```
 
 ## 使用指南
