@@ -1,0 +1,25 @@
+# 使用官方的 Go 语言镜像作为基础镜像
+FROM golang:1.18-alpine
+
+# 安装 air 工具
+RUN apk add --no-cache git curl && \
+    go install github.com/cosmtrek/air@latest
+
+# 设置工作目录
+WORKDIR /app
+
+# 将 go.mod 和 go.sum 文件复制到工作目录
+COPY go.mod go.sum ./
+
+# 下载所有依赖并生成 go.sum 文件
+RUN go mod tidy
+RUN go mod download
+
+# 将当前目录中的所有文件复制到工作目录
+COPY . .
+
+# 安装其他依赖项
+RUN apk --no-cache add bash
+
+# 运行 air 工具
+CMD ["air", "-c", ".air.toml"]
