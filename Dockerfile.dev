@@ -8,8 +8,8 @@ RUN apk add --no-cache git curl && \
 # 设置工作目录
 WORKDIR /app
 
-# 将 go.mod 和 go.sum 文件复制到工作目录
-COPY go.mod go.sum ./
+# 将 go.dev.mod 和 go.dev.sum 文件复制到工作目录
+COPY go.dev.mod go.dev.sum ./
 
 # 下载所有依赖并生成 go.sum 文件
 RUN go mod tidy
