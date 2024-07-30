@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ~/code/go/src/github.com/yshujie/user-profile-converter:/app  # 挂载宿主机的项目目录到容器内
+      - /home/yourusername/go/pkg/mod:/go/pkg/mod # 缓存Go模块以加快构建速度
+    command: air -c .air.toml

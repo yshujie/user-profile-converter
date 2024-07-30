@@ -62,7 +62,7 @@ git clone git@github.com:yshujie/user-profile-converter.git
 
 #### 开发环境运行 Docker 容器
 ```
-docker-compose up --build
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
 #### 生产环境运行 Docker 容器
