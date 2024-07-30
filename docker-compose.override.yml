@@ -6,6 +6,14 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
+      - ~/code/go/src/github.com/yshujie/user-profile-converter:/app # 挂载宿主机的项目目录到容器内
+      - ～code/go/pkg/mod:/go/pkg/mod # 缓存Go模块以加快构建速度
+    env_file:
+      - .env
+
+  init:
+    image: golang:1.18-alpine
+    volumes:
       - ~/code/go/src/github.com/yshujie/user-profile-converter:/app
-      - ～code/go/pkg/mod:/go/pkg/mod
-    command: air -c .air.toml
+    working_dir: /app
+    command: sh -c "go mod tidy && go mod download"

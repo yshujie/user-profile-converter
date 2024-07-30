@@ -1,0 +1,27 @@
+# .air.toml
+[build]
+  bin = "./tmp/main"  # 编译后的二进制文件输出路径
+  cmd = "go build -o ./tmp/main cmd/app/main.go"  # 编译命令
+  include_ext = ["go", "tpl", "tmpl", "html"]  # 需要监听的文件扩展名
+  exclude_dir = ["assets", "tmp", "vendor", "docs"]  # 排除的目录
+
+[log]
+  level = "debug"
+  [log.colors]
+    method = "magenta"
+    package = "cyan"
+
+[cmds.before]
+  cmds = ["echo 'running pre-commands'"]
+  output = "stdout"
+
+[cmds.after]
+  cmds = ["echo 'running post-commands'"]
+  output = "stdout"
+
+[watch]
+  full_reload = false  # 完整重新加载
+  immediate = true  # 立即执行命令
+  delay = 200  # 延迟时间（毫秒）
+  color = true  # 启用日志颜色
+  filter = []  # 文件过滤
