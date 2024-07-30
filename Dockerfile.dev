@@ -1,5 +1,5 @@
 # 使用官方的 Go 语言镜像作为基础镜像
-FROM golang:1.20-alpine
+FROM golang:1.22-alpine
 
 # 安装 air 工具
 RUN apk add --no-cache git curl && \
@@ -9,7 +9,7 @@ RUN apk add --no-cache git curl && \
 WORKDIR /app
 
 # 将 go.dev.mod 文件复制到工作目录
-COPY go.dev.mod ./
+COPY go.dev.mod go.mod
 
 # 下载所有依赖并生成 go.sum 文件
 RUN go mod tidy
