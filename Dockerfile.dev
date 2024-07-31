@@ -1,15 +1,15 @@
 # 使用官方的 Go 语言镜像作为基础镜像
 FROM golang:1.22-alpine
 
-# 安装 air 工具
-RUN apk add --no-cache git curl && \
-    go install github.com/air-verse/air@v1.52.3
+# 安装其他依赖
+RUN apk add --no-cache git curl bash
 
 # 设置工作目录
 WORKDIR /app
 
-# 将 go.dev.mod 文件复制到工作目录
+# 将 go.dev.mod 和 go.dev.sum 文件复制到工作目录
 COPY go.dev.mod go.mod
+COPY go.dev.sum go.sum
 
 # 下载所有依赖并生成 go.sum 文件
 RUN go mod tidy
@@ -18,12 +18,8 @@ RUN go mod download
 # 将当前目录中的所有文件复制到工作目录
 COPY . .
 
-# 再次运行 go mod tidy 和 go mod download 以确保所有依赖项正确记录在 go.sum 文件中
-RUN go mod tidy
-RUN go mod download
-
-# 安装其他依赖项
-RUN apk --no-cache add bash
+# 安装 air 工具
+RUN go install github.com/air-verse/air@v1.52.3
 
 # 运行 air 工具
 CMD ["air", "-c", ".air.toml"]
