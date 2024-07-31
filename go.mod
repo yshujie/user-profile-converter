@@ -1,4 +1,4 @@
-module github.com/yshujie/user-profile-converter
+module github.com/yshujie/user-profile-converter/v1
 
 go 1.22
 
