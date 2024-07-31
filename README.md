@@ -70,4 +70,9 @@ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
 ```
 
+#### 自动删除所有资源
+```
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml down --rmi all --volumes --remove-orphans
+```
+
 ## 使用指南
