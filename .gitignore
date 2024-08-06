@@ -25,6 +25,7 @@ vendor/
 
 # Environment variable files
 .env
+.env.prod
 
 # Dependency directories
 node_modules/
